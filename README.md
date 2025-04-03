@@ -48,6 +48,7 @@ http://localhost:3010/swagger#/Book/BookController_getAll
 
 * Nest
 * Docker compose
+* PostgreSQL
 
 ## Author
 
