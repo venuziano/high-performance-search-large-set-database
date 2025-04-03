@@ -101,7 +101,7 @@ export class BookService {
     FROM book b
     ORDER BY b.${sortField} ${sortOrder}
     LIMIT $1 OFFSET $2`;
-
+    
     const resultBooks: Book[] = await this.bookRepository.query(
       filter !== '' ? rawQueryUsingFilter : rawQueryWithoutFilter,
       filter !== '' ? [tsquery(filter), limit, offset] : [limit, offset],

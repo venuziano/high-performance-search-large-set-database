@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Book } from 'src/entity/book.entity';
-import { GetBookCategoryDTO } from '../book.categories/book.categories.dto';
+import { GetBookCategoryDTO } from '../book-categories/book.categories.dto';
 
 export class getAllBooksDTO {
   @ApiProperty({
@@ -63,13 +63,13 @@ export class getAllBooksDTO {
     this.created_at = book.created_at;
     this.updated_at = book.updated_at;
 
-    // this.categories = book.bookCategories.map(
-    //   (bookCategory: GetBookCategoryDTO) => ({
-    //     category: {
-    //       id: bookCategory.category.id,
-    //       name: bookCategory.category.name,
-    //     },
-    //   }),
-    // );
+    this.categories = book.bookCategories?.map(
+      (bookCategory: GetBookCategoryDTO) => ({
+        category: {
+          id: bookCategory.category.id,
+          name: bookCategory.category.name,
+        },
+      }),
+    );
   }
 }

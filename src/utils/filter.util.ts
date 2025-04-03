@@ -4,4 +4,4 @@
  * @constant {string}
  */
 export const tsquery = (filter: string): string =>
-  filter.trim().split(/\s+/).join(' & ');
+  filter?.trim().split(/\s+/).join(' & ');

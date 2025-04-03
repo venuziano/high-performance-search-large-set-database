@@ -35,7 +35,7 @@ export class BookController {
     required: true,
     description: 'Max number of items to retrieve',
     type: Number,
-    schema: { default: 10 },
+    schema: { default: paginationLimit },
   })
   @ApiQuery({
     name: 'page',
@@ -64,7 +64,7 @@ export class BookController {
   })
   @ApiBadRequestResponse({ description: 'Something went wrong' })
   async getAll(
-    @Query('filter') filter?: string,
+    @Query('filter') filter: string = '',
     @Query('limit', ParseIntPipe) limit: number = paginationLimit,
     @Query('page', ParseIntPipe) page: number = 1,
     @Query('sort') sort?: string,
