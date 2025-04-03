@@ -1,0 +1,35 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3010:3010"  # Adjust as needed
+    volumes:
+      - .:/src             # Bind mount the current directory into /src in the container
+      - api-data:/src/node_modules  # Use a volume to prevent overwriting container node_modules
+    depends_on:
+      - postgres
+    environment:
+      API_PORT: ${API_PORT}
+      PG_TYPE: ${PG_TYPE}
+      PG_PORT: ${PG_PORT}
+      HOST: ${HOST}
+      USERNAME: ${DB_USER}
+      DATABASE: ${DATABASE}
+      PASSWORD: ${DB_PASSWORD}
+      entrypoint: "/usr/local/bin/entrypoint.sh"
+
+  postgres:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DATABASE}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  api-data:
+  pg-data:
