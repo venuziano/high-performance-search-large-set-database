@@ -15,8 +15,8 @@ async function bootstrap() {
 
   // Set up Swagger
   const config = new DocumentBuilder()
-    .setTitle('Your API title')
-    .setDescription('The API description')
+    .setTitle('High performance search in large database sets')
+    .setDescription('The idea of this repository is to solve a common real use case when users need to search for a specific search term in large database sets.')
     .setVersion('1.0')
     .addTag('YourTagName')
     .build();

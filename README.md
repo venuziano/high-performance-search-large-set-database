@@ -37,7 +37,7 @@ docker compose up --build -d
 ```
 
 Observation:
-The first initiliazion may take a few minutes due to the procedure that includes 20 million records in the book categories DB table.
+The first initialization may take a few minutes due to the procedure that includes 20 million records in the book categories DB table.
 
 Access the swagger docs using:
 ```

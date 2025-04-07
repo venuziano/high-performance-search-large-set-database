@@ -48,7 +48,7 @@ export class BookController {
     name: 'sort',
     required: false,
     description:
-      'Sort field (e.g., name, author, publisher, created_at, updated_at)',
+      'Sort field (e.g., book name, author, publisher, publication_date, page_count, created_at, updated_at)',
     type: String,
   })
   @ApiQuery({
