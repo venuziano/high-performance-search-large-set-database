@@ -39,6 +39,11 @@ docker compose up --build -d
 Observation:
 The first initialization may take a few minutes due to the procedure that includes 20 million records in the book categories DB table.
 
+If the migrations don't run automatically, you can execute the following command:
+```
+npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d ./src/database/data.source.ts
+```
+
 Access Swagger doc using:
 ```
 http://localhost:3010/swagger#/Book/BookController_getAll
