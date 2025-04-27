@@ -8,6 +8,8 @@ Let's use the follow example:
 
 This can be easily extended to other business rules, such as a user searching for customers and their licenses, or searching for specific item names in a store, and so on.
 
+I wrote an article about that: https://dev.to/venuziano/how-to-optimize-search-queries-in-large-databases-with-postgresql-and-gin-indexes-11b5
+
 ### Prerequirements
 
 ```
