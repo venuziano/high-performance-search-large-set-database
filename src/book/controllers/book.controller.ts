@@ -80,7 +80,69 @@ export class BookController {
       );
     } catch (error) {
       console.log('error', error);
-      throw new BadRequestException('somenthin went wrong');
+      throw new BadRequestException('somenthing went wrong');
+    }
+  }
+
+  @Get('book/slow/get/all')
+  @ApiOperation({ summary: 'Get all books' })
+  @ApiQuery({
+    name: 'filter',
+    required: false,
+    description: 'Optional filter string',
+    type: String,
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: true,
+    description: 'Max number of items to retrieve',
+    type: Number,
+    schema: { default: paginationLimit },
+  })
+  @ApiQuery({
+    name: 'page',
+    required: true,
+    description: 'Current page number',
+    type: Number,
+    schema: { default: 1 },
+  })
+  @ApiQuery({
+    name: 'sort',
+    required: false,
+    description:
+      'Sort field (e.g., book name, author, publisher, publication_date, page_count, created_at, updated_at)',
+    type: String,
+  })
+  @ApiQuery({
+    name: 'order',
+    required: false,
+    description: 'Sort order, either ASC or DESC',
+    type: String,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'List retrieved successfully!',
+    type: PaginatedResponseDto(getAllBooksDTO),
+  })
+  @ApiBadRequestResponse({ description: 'Something went wrong' })
+  async getSlowAll(
+    @Query('filter') filter: string = '',
+    @Query('limit', ParseIntPipe) limit: number = paginationLimit,
+    @Query('page', ParseIntPipe) page: number = 1,
+    @Query('sort') sort?: string,
+    @Query('order') order?: string,
+  ): Promise<GetAllBooksPaginatedResponse> {
+    try {
+      return await this.bookService.getAllSlowBooks(
+        limit,
+        page,
+        filter,
+        sort,
+        order,
+      );
+    } catch (error) {
+      console.log('error', error);
+      throw new BadRequestException('somenthing went wrong');
     }
   }
 }
